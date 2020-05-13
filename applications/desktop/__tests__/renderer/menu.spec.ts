@@ -11,17 +11,17 @@ import { mockAppState } from "@nteract/fixtures";
 describe("dispatchCreateCellAbove", () => {
   test("dispatches a CREATE_CELL_ABOVE with code action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchCreateCellAbove(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.createCellAbove({
         cellType: "code",
-        contentRef: props.contentRef
+        contentRef: props.contentRef,
       })
     );
   });
@@ -30,18 +30,17 @@ describe("dispatchCreateCellAbove", () => {
 describe("dispatchCreateCellBelow", () => {
   test("dispatches a CREATE_CELL_BELOW with code action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchCreateCellBelow(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.createCellBelow({
         cellType: "code",
-        source: "",
-        contentRef: props.contentRef
+        contentRef: props.contentRef,
       })
     );
   });
@@ -50,18 +49,17 @@ describe("dispatchCreateCellBelow", () => {
 describe("dispatchCreateTextCellBelow", () => {
   test("dispatches a CREATE_CELL_BELOW with markdown action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchCreateTextCellBelow(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.createCellBelow({
         cellType: "markdown",
-        source: "",
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -69,18 +67,17 @@ describe("dispatchCreateTextCellBelow", () => {
 describe("dispatchCreateRawCellBelow", () => {
   test("dispatches a CREATE_RAW_BELOW with raw action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchCreateRawCellBelow(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.createCellBelow({
         cellType: "raw",
-        source: "",
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -89,16 +86,16 @@ describe("dispatchCreateRawCellBelow", () => {
 describe("dispatchDeleteCell", () => {
   test("dispatches a DELETE_CELL on currently active cell", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchDeleteCell(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.deleteCell({
-        contentRef: props.contentRef
+        contentRef: props.contentRef,
       })
     );
   });
@@ -107,17 +104,17 @@ describe("dispatchDeleteCell", () => {
 describe("dispatchChangeCellToCode", () => {
   test("dispatches a CHANGE_CELL_TYPE with code action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchChangeCellToCode(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.changeCellType({
         to: "code",
-        contentRef: props.contentRef
+        contentRef: props.contentRef,
       })
     );
   });
@@ -126,17 +123,17 @@ describe("dispatchChangeCellToCode", () => {
 describe("dispatchChangeCellToText", () => {
   test("dispatches a CHANGE_CELL_TYPE with code action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchChangeCellToText(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.changeCellType({
         to: "markdown",
-        contentRef: props.contentRef
+        contentRef: props.contentRef,
       })
     );
   });
@@ -145,16 +142,16 @@ describe("dispatchChangeCellToText", () => {
 describe("dispatchPasteCell", () => {
   test("dispatches a pasteCell action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchPasteCell(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.pasteCell({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -163,16 +160,16 @@ describe("dispatchPasteCell", () => {
 describe("dispatchCutCell", () => {
   test("dispatches a cutCell action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchCutCell(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.cutCell({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -181,15 +178,15 @@ describe("dispatchCutCell", () => {
 describe("dispatchCopyCell", () => {
   test("dispatches a copyCell action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     menu.dispatchCopyCell(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.copyCell({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -198,10 +195,10 @@ describe("dispatchCopyCell", () => {
 describe("dispatchSetConfig for the theme", () => {
   test("dispatches a SET_CONFIG action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     const config = { theme: "test_theme" };
@@ -211,25 +208,25 @@ describe("dispatchSetConfig for the theme", () => {
       store,
       {},
       {
-        config
+        config,
       }
     );
 
     expect(store.dispatch).toHaveBeenCalledWith({
       type: actions.SET_CONFIG,
       payload: {
-        config
-      }
+        config,
+      },
     });
   });
 });
 describe("dispatch dispatchSetConfig for the SetCursorBlink Codemirror configuration", () => {
   test("dispatches a SET_CONFIG action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     const config = { codeMirror: { cursorBlinkRate: 42 } };
@@ -238,7 +235,7 @@ describe("dispatch dispatchSetConfig for the SetCursorBlink Codemirror configura
 
     expect(store.dispatch).toHaveBeenCalledWith({
       type: actions.SET_CONFIG,
-      payload: config
+      payload: config,
     });
   });
 });
@@ -246,16 +243,16 @@ describe("dispatch dispatchSetConfig for the SetCursorBlink Codemirror configura
 describe("dispatchLoadConfig", () => {
   test("dispatches a LOAD_CONFIG action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchLoadConfig(props, store);
 
     expect(store.dispatch).toHaveBeenCalledWith({
-      type: "LOAD_CONFIG"
+      type: "LOAD_CONFIG",
     });
   });
 });
@@ -297,22 +294,22 @@ describe("dispatchRestartKernel", () => {
                   filepath: "yep.ipynb",
                   model: {
                     type: "notebook",
-                    kernelRef: "k1"
-                  }
-                }
-              })
+                    kernelRef: "k1",
+                  },
+                },
+              }),
             },
             kernels: {
               byRef: Immutable.Map({
-                k1: {}
-              })
-            }
-          }
-        }
-      })
+                k1: {},
+              }),
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchRestartKernel(props, store, "Clear All");
@@ -322,8 +319,8 @@ describe("dispatchRestartKernel", () => {
       payload: {
         outputHandling: "Clear All",
         kernelRef: "k1",
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -342,22 +339,22 @@ describe("dispatchInterruptKernel", () => {
                   filepath: "yep.ipynb",
                   model: {
                     type: "notebook",
-                    kernelRef: "k1"
-                  }
-                }
-              })
+                    kernelRef: "k1",
+                  },
+                },
+              }),
             },
             kernels: {
               byRef: Immutable.Map({
-                k1: {}
-              })
-            }
-          }
-        }
-      })
+                k1: {},
+              }),
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchInterruptKernel(props, store);
@@ -367,8 +364,8 @@ describe("dispatchInterruptKernel", () => {
         type: actions.INTERRUPT_KERNEL,
         payload: {
           kernelRef: "k1",
-          contentRef: "123"
-        }
+          contentRef: "123",
+        },
       });
     }
   });
@@ -387,22 +384,22 @@ describe("dispatchKillKernel", () => {
                   filepath: "yep.ipynb",
                   model: {
                     type: "notebook",
-                    kernelRef: "k1"
-                  }
-                }
-              })
+                    kernelRef: "k1",
+                  },
+                },
+              }),
             },
             kernels: {
               byRef: Immutable.Map({
-                k1: {}
-              })
-            }
-          }
-        }
-      })
+                k1: {},
+              }),
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchKillKernel(props, store);
@@ -411,8 +408,8 @@ describe("dispatchKillKernel", () => {
       type: actions.KILL_KERNEL,
       payload: {
         restarting: false,
-        kernelRef: "k1"
-      }
+        kernelRef: "k1",
+      },
     });
   });
 });
@@ -420,17 +417,17 @@ describe("dispatchKillKernel", () => {
 describe("dispatchClearAll", () => {
   test("dispatches CLEAR_ALL_OUTPUTS actions", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchClearAll(props, store);
 
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.clearAllOutputs({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -439,16 +436,16 @@ describe("dispatchClearAll", () => {
 describe("dispatchRunAllBelow", () => {
   test("runs all code cells below the focused cell", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchRunAllBelow(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.executeAllCellsBelow({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -457,15 +454,15 @@ describe("dispatchRunAllBelow", () => {
 describe("dispatchRunAll", () => {
   test("dispatches executeAllCells action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     menu.dispatchRunAll(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.executeAllCells({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -474,17 +471,17 @@ describe("dispatchRunAll", () => {
 describe("dispatchUnhideAll", () => {
   test("", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     menu.dispatchUnhideAll(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.unhideAll({
         outputHidden: false,
         inputHidden: false,
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -497,20 +494,20 @@ describe("dispatchPublishUserGist", () => {
       dispatch: jest.fn(),
       getState: () => ({
         app: Immutable.Map({
-          githubToken: "MYTOKEN"
-        })
-      })
+          githubToken: "MYTOKEN",
+        }),
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchPublishGist(props, store, {});
     expect(store.dispatch).toHaveBeenCalledWith({
       type: actions.PUBLISH_GIST,
       payload: {
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -523,17 +520,17 @@ describe("dispatchNewKernel", () => {
         core: {
           entities: {
             contents: {
-              byRef: Immutable.Map()
+              byRef: Immutable.Map(),
             },
             kernels: {
-              byRef: {}
-            }
-          }
-        }
-      })
+              byRef: {},
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchNewKernel(props, store, {}, { spec: "hokey" });
@@ -545,8 +542,8 @@ describe("dispatchNewKernel", () => {
         cwd: process.cwd(),
         selectNextKernel: true,
         kernelRef: expect.any(String),
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -562,24 +559,24 @@ describe("dispatchSave", () => {
             contents: {
               byRef: Immutable.Map({
                 "123": {
-                  filepath: "yep.ipynb"
-                }
-              })
+                  filepath: "yep.ipynb",
+                },
+              }),
             },
             kernels: {
-              byRef: {}
-            }
-          }
-        }
-      })
+              byRef: {},
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     menu.dispatchSave(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.save({
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -593,23 +590,23 @@ describe("dispatchSaveAs", () => {
         core: {
           entities: {
             contents: {
-              byRef: Immutable.Map()
+              byRef: Immutable.Map(),
             },
             kernels: {
-              byRef: {}
-            }
-          }
-        }
-      })
+              byRef: {},
+            },
+          },
+        },
+      }),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     menu.dispatchSaveAs(props, store, {}, "test-ipynb.ipynb");
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.saveAs({
         filepath: "test-ipynb.ipynb",
-        contentRef: "123"
+        contentRef: "123",
       })
     );
   });
@@ -618,10 +615,10 @@ describe("dispatchSaveAs", () => {
 describe("dispatchLoad", () => {
   test("dispatches LOAD action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchLoad(props, store, {}, "test-ipynb.ipynb");
@@ -631,8 +628,8 @@ describe("dispatchLoad", () => {
         filepath: "test-ipynb.ipynb",
         params: {},
         kernelRef: expect.any(String),
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -640,10 +637,10 @@ describe("dispatchLoad", () => {
 describe("dispatchNewNotebook", () => {
   test("dispatches a NEW_NOTEBOOK action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchNewNotebook(props, store, {}, null, { spec: "hokey" });
@@ -654,8 +651,8 @@ describe("dispatchNewNotebook", () => {
         kernelSpec: { spec: "hokey" },
         cwd: process.cwd(),
         kernelRef: expect.any(String),
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -663,10 +660,10 @@ describe("dispatchNewNotebook", () => {
 describe("dispatchNewNotebookNamed", () => {
   test("dispatches a NEW_NOTEBOOK action with name", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     menu.dispatchNewNotebook(props, store, {}, "some.ipynb", { spec: "hokey" });
@@ -677,8 +674,8 @@ describe("dispatchNewNotebookNamed", () => {
         kernelSpec: { spec: "hokey" },
         cwd: process.cwd(),
         kernelRef: expect.any(String),
-        contentRef: "123"
-      }
+        contentRef: "123",
+      },
     });
   });
 });
@@ -686,10 +683,10 @@ describe("dispatchNewNotebookNamed", () => {
 describe("initMenuHandlers", () => {
   test("registers the menu events", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     ipc.on = jest.fn();
@@ -721,8 +718,8 @@ describe("initMenuHandlers", () => {
       "menu:zoom-out",
       "menu:set-config",
       "main:load",
-      "main:new"
-    ].forEach(name => {
+      "main:new",
+    ].forEach((name) => {
       expect(ipc.on).toHaveBeenCalledWith(name, expect.any(Function));
     });
   });
@@ -736,7 +733,7 @@ describe("exportPDF", () => {
       .first();
     const store = {
       dispatch: jest.fn(),
-      getState: jest.fn(() => state)
+      getState: jest.fn(() => state),
     };
     const filepath = "thisisafilename.ipynb";
     menu.exportPDF({ contentRef }, store, filepath);
@@ -747,8 +744,8 @@ describe("exportPDF", () => {
         level: "success",
         action: {
           label: "Open",
-          callback: expect.any(Function)
-        }
+          callback: expect.any(Function),
+        },
       })
     );
   });
@@ -757,7 +754,7 @@ describe("exportPDF", () => {
 describe("storeToPDF", () => {
   test("triggers notification when not saved", () => {
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
 
     const store = {
@@ -768,13 +765,13 @@ describe("storeToPDF", () => {
             contents: {
               byRef: Immutable.Map({
                 "123": {
-                  filepath: null
-                }
-              })
-            }
-          }
-        }
-      })
+                  filepath: null,
+                },
+              }),
+            },
+          },
+        },
+      }),
     };
 
     menu.storeToPDF(props, store);
@@ -785,7 +782,7 @@ describe("storeToPDF", () => {
         message: expect.stringContaining(
           "Click the button below to save the notebook"
         ),
-        level: "warning"
+        level: "warning",
       })
     );
   });
@@ -800,17 +797,17 @@ describe("dispatchInterruptKernel", () => {
     const kernelRef = selectors.kernelRefByContentRef(state, { contentRef });
     const store = {
       dispatch: jest.fn(),
-      getState: jest.fn(() => state)
+      getState: jest.fn(() => state),
     };
     const props = {
-      contentRef
+      contentRef,
     };
 
     menu.dispatchInterruptKernel(props, store);
     expect(store.dispatch).toHaveBeenCalledWith(
       actions.interruptKernel({
         contentRef,
-        kernelRef
+        kernelRef,
       })
     );
   });
@@ -826,14 +823,14 @@ describe("exportPDF", () => {
             contents: {
               byRef: Immutable.Map({
                 "123": {
-                  filepath: null
-                }
-              })
-            }
-          }
+                  filepath: null,
+                },
+              }),
+            },
+          },
         },
-        app: Immutable.Map({})
-      })
+        app: Immutable.Map({}),
+      }),
     };
 
     const invocation = () =>
@@ -847,7 +844,7 @@ describe("exportPDF", () => {
       .first();
     const store = {
       dispatch: jest.fn(),
-      getState: jest.fn(() => state)
+      getState: jest.fn(() => state),
     };
     const props = { contentRef };
 
@@ -856,8 +853,8 @@ describe("exportPDF", () => {
       type: actions.TOGGLE_OUTPUT_EXPANSION,
       payload: {
         id: expect.any(String),
-        contentRef
-      }
+        contentRef,
+      },
     });
   });
 });
@@ -865,10 +862,10 @@ describe("exportPDF", () => {
 describe("dispatch SetConfig", () => {
   test("dispatches a setConfig action", () => {
     const store = {
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
     };
     const props = {
-      contentRef: "123"
+      contentRef: "123",
     };
     const config = { key: "value" };
     menu.dispatchSetConfig(props, store, {}, { config });
@@ -878,7 +875,7 @@ describe("dispatch SetConfig", () => {
 
 describe("showSaveAsDialog", () => {
   it("shows the saveAs dialog", () => {
-    menu.showSaveAsDialog().then(filepath => {
+    menu.showSaveAsDialog().then((filepath) => {
       expect(remote.dialog.showSaveAsDialog).toBeCalled();
     });
   });

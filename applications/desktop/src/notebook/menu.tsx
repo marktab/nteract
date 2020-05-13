@@ -56,7 +56,7 @@ export function showSaveAsDialog(): Promise<string> {
   return new Promise((resolve, _reject) => {
     const options: SaveDialogOptions = {
       title: "Save Notebook",
-      filters: [{ name: "Notebooks", extensions: ["ipynb"] }]
+      filters: [{ name: "Notebooks", extensions: ["ipynb"] }],
     };
 
     // In Electron, we want an object we can merge into dialog opts, falling back
@@ -67,7 +67,7 @@ export function showSaveAsDialog(): Promise<string> {
       options.defaultPath = defaultPath;
     }
 
-    dialog.showSaveDialog(options, filepath => {
+    dialog.showSaveDialog(options, (filepath) => {
       // If there was a filepath set and the extension name for it is blank,
       // append `.ipynb`
       resolve(
@@ -96,7 +96,7 @@ export function dispatchRestartKernel(
     actions.restartKernel({
       outputHandling,
       kernelRef,
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -110,9 +110,12 @@ export function dispatchSave(
   const filepath = selectors.filepath(state, ownProps);
 
   if (filepath === null || filepath === "") {
-    showSaveAsDialog().then(filepath => {
-      if (filepath)
-        store.dispatch(actions.saveAs({ filepath, contentRef: ownProps.contentRef }));
+    showSaveAsDialog().then((filepath) => {
+      if (filepath) {
+        store.dispatch(
+          actions.saveAs({ filepath, contentRef: ownProps.contentRef })
+        );
+      }
     });
   } else {
     store.dispatch(actions.save(ownProps));
@@ -141,7 +144,7 @@ export function dispatchNewKernel(
       cwd,
       kernelRef,
       selectNextKernel: true,
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -167,7 +170,7 @@ export function dispatchPublishGist(
       icon: "book",
       title: "Publishing Gist",
       message: "Authenticating...",
-      level: "in-progress"
+      level: "in-progress",
     })
   );
 
@@ -178,7 +181,7 @@ export function dispatchPublishGist(
   // Create our oauth window
   const win = new electronRemote.BrowserWindow({
     show: false,
-    webPreferences: { zoomFactor: 0.75, nodeIntegration: true }
+    webPreferences: { zoomFactor: 0.75, nodeIntegration: true },
   });
 
   // TODO: This needs to be moved to an epic
@@ -200,7 +203,7 @@ export function dispatchPublishGist(
               icon: "book",
               title: "Publishing Gist",
               message: "Authenticated 🔒",
-              level: "in-progress"
+              level: "in-progress",
             })
           );
           // We are now authenticated and can finally publish
@@ -247,7 +250,7 @@ export function dispatchUnhideAll(
     actions.unhideAll({
       outputHidden: false,
       inputHidden: false,
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -277,7 +280,7 @@ export function dispatchInterruptKernel(
       sendNotification.create({
         title: "Not supported in Windows",
         message: "Kernel interruption is not supported in Windows.",
-        level: "error"
+        level: "error",
       })
     );
   } else {
@@ -349,7 +352,7 @@ export function dispatchCreateCellAbove(
   store.dispatch(
     actions.createCellAbove({
       cellType: "code",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -361,8 +364,7 @@ export function dispatchCreateCellBelow(
   store.dispatch(
     actions.createCellBelow({
       cellType: "code",
-      source: "",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -374,8 +376,7 @@ export function dispatchCreateTextCellBelow(
   store.dispatch(
     actions.createCellBelow({
       cellType: "markdown",
-      source: "",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -386,8 +387,7 @@ export function dispatchCreateRawCellBelow(
   store.dispatch(
     actions.createCellBelow({
       cellType: "raw",
-      source: "",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -399,7 +399,7 @@ export function dispatchChangeCellToCode(
   store.dispatch(
     actions.changeCellType({
       to: "code",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -411,7 +411,7 @@ export function dispatchChangeCellToText(
   store.dispatch(
     actions.changeCellType({
       to: "markdown",
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -434,7 +434,7 @@ export function dispatchLoad(
       filepath,
       params: {},
       kernelRef,
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -460,7 +460,7 @@ export function dispatchNewNotebook(
       cwd: getDocumentDirectory(),
       kernelSpec,
       kernelRef,
-      contentRef: ownProps.contentRef
+      contentRef: ownProps.contentRef,
     })
   );
 }
@@ -500,14 +500,14 @@ export function exportPDF(
     store.dispatch(
       actions.toggleOutputExpansion({
         id: cellId,
-        contentRef: ownProps.contentRef
+        contentRef: ownProps.contentRef,
       })
     )
   );
 
   remote.getCurrentWindow().webContents.printToPDF(
     {
-      printBackground: true
+      printBackground: true,
     },
     (error, data) => {
       if (error) {
@@ -519,12 +519,12 @@ export function exportPDF(
         store.dispatch(
           actions.toggleOutputExpansion({
             id: cellId,
-            contentRef: ownProps.contentRef
+            contentRef: ownProps.contentRef,
           })
         )
       );
 
-      fs.writeFile(pdfPath, data, _error_fs => {
+      fs.writeFile(pdfPath, data, (_error_fs) => {
         // Show the user the most important parts of the PDF path, as much as
         // they have space in the message.
         const pdfPathParts = pdfPath.split("/");
@@ -562,7 +562,7 @@ export function exportPDF(
                       onClick:
                         i === pdfPathParts.length - 1
                           ? () => shell.openItem(pdfPath)
-                          : undefined
+                          : undefined,
                     }))}
                   />
                 </NoWrap>
@@ -572,8 +572,8 @@ export function exportPDF(
             level: "success",
             action: {
               label: "Open",
-              callback: () => shell.openItem(pdfPath)
-            }
+              callback: () => shell.openItem(pdfPath),
+            },
           })
         );
       });
@@ -586,14 +586,16 @@ export function triggerSaveAsPDF(
   store: DesktopStore
 ): void {
   showSaveAsDialog()
-    .then(filepath => {
+    .then((filepath) => {
       if (filepath) {
         return Promise.all([
-          store.dispatch(actions.saveAs({ filepath, contentRef: ownProps.contentRef }))
+          store.dispatch(
+            actions.saveAs({ filepath, contentRef: ownProps.contentRef })
+          ),
         ]).then(() => storeToPDF(ownProps, store));
       }
     })
-    .catch(e => store.dispatch(actions.coreError(e)));
+    .catch((e) => store.dispatch(actions.coreError(e)));
 }
 
 export function storeToPDF(
@@ -613,8 +615,8 @@ export function storeToPDF(
           label: "Save As",
           callback(): void {
             triggerSaveAsPDF(ownProps, store);
-          }
-        }
+          },
+        },
       })
     );
   } else {
@@ -636,7 +638,7 @@ export function initMenuHandlers(
   store: DesktopStore
 ): void {
   const opts = {
-    contentRef
+    contentRef,
   };
 
   ipc.on("main:new", dispatchNewNotebook.bind(null, opts, store));
